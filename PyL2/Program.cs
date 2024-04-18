@@ -9,7 +9,7 @@ class Program
     static void Main(string[] args)
     {
         int j = 6;
-        Console.Write("El  es ");
+        Console.Write("El eee  es ");
         Console.WriteLine(Factorial.CalcularFactorial(j));
 
     }
