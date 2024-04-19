@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BibliotecaDeClases
 {
@@ -9,7 +13,11 @@ namespace BibliotecaDeClases
             while (true)
             {
                 Console.Write("¿Desea continuar? (S/N): ");
-                string respuesta = Console.ReadLine().ToUpper();
+                string? respuesta = Console.ReadLine();
+                if (respuesta != null)
+                {
+                    respuesta = respuesta.ToUpper();
+                }
                 if (respuesta == "N")
                 {
                     return false;

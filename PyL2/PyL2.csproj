@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BibliotecaDeClases\BibliotecaDeClases.csproj" />
     <ProjectReference Include="..\Calculadora\Calculadora.csproj" />
+    <ProjectReference Include="..\Poo\Poo.csproj" />
   </ItemGroup>
 
 </Project>
