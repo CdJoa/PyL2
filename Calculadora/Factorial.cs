@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace Calculadora
+﻿namespace Calculadora
 {
     public class Factorial
     {
-        // Método para calcular el factorial de un número entero
         public static long CalcularFactorial(int numero)
         {
             if (numero < 0)
@@ -20,7 +12,7 @@ namespace Calculadora
             long resultado = 1;
             for (int i = 1; i <= numero; i++)
             {
-                resultado *= i; // Multiplicación sucesiva para calcular el factorial
+                resultado *= i;
             }
             return resultado;
         }

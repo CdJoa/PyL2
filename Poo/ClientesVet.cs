@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 
 namespace Poo
@@ -15,14 +11,13 @@ namespace Poo
         private string telefono;
         private List<MascotasVet> mascotas;
 
-        // Constructor para inicializar los campos
         public ClientesVet(string nombre, string apellido, string domicilio, string telefono)
         {
             this.nombre = nombre;
             this.apellido = apellido;
             this.domicilio = domicilio;
             this.telefono = telefono;
-            this.mascotas = new List<MascotasVet>(); 
+            this.mascotas = new List<MascotasVet>();
         }
 
         public void AgregarMascota(MascotasVet mascota)

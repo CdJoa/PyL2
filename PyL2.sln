@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaDeClases", "Bibli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculadora", "Calculadora\Calculadora.csproj", "{9E74D46C-0F8E-4E83-BD2E-82DBBEF5DA62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poo", "Poo\Poo.csproj", "{5A9C77BF-4B93-4733-8693-2B9BE26FA8BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poo", "Poo\Poo.csproj", "{5A9C77BF-4B93-4733-8693-2B9BE26FA8BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sobrecarga", "Sobrecarga\Sobrecarga.csproj", "{C12D2252-BF07-41E3-9056-BB956EAC8A01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5A9C77BF-4B93-4733-8693-2B9BE26FA8BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A9C77BF-4B93-4733-8693-2B9BE26FA8BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A9C77BF-4B93-4733-8693-2B9BE26FA8BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C12D2252-BF07-41E3-9056-BB956EAC8A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C12D2252-BF07-41E3-9056-BB956EAC8A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C12D2252-BF07-41E3-9056-BB956EAC8A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C12D2252-BF07-41E3-9056-BB956EAC8A01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

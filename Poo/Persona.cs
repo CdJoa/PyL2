@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Poo
+﻿namespace Poo
 {
     public class Persona
     {
@@ -20,14 +18,12 @@ namespace Poo
             set { this.nombre = value; }
         }
 
-        // Getter y setter para fechaDeNacimiento
         public DateTime FechaDeNacimiento
         {
             get { return this.fechaDeNacimiento; }
             set { this.fechaDeNacimiento = value; }
         }
 
-        // Getter y setter para dni
         public string Dni
         {
             get { return this.dni; }

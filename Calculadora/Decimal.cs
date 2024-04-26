@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Calculadora
+﻿namespace Calculadora
 {
     public class Decimal
     {
-        public static float Sumar (float numeroUno, float numeroDos)
+        public static float Sumar(float numeroUno, float numeroDos)
         {
             var suma = numeroUno + numeroDos;
             return suma;

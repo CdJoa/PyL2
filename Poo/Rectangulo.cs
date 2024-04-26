@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poo
+﻿namespace Poo
 {
     public class Rectangulo
     {
-        private float? area; // Usamos Nullable<float> para permitir el valor nulo
-        private float? perimetro; // Usamos Nullable<float> para permitir el valor nulo
+        private float? area;
+        private float? perimetro;
         private Punto vertice1;
         private Punto vertice2;
         private Punto vertice3;
@@ -20,10 +14,7 @@ namespace Poo
             this.vertice1 = vertice1;
             this.vertice3 = vertice3;
 
-            // Calcular los vértices 2 y 4
-            // Vértice 2: Misma coordenada Y que vertice1, misma coordenada X que vertice3
             this.vertice2 = new Punto(vertice3.GetX(), vertice1.GetY());
-            // Vértice 4: Misma coordenada Y que vertice3, misma coordenada X que vertice1
             this.vertice4 = new Punto(vertice1.GetX(), vertice3.GetY());
         }
 
@@ -33,7 +24,7 @@ namespace Poo
             {
                 CalcularArea();
             }
-            return this.area ?? 0; 
+            return this.area ?? 0;
         }
 
         public float ObtenerPerimetro()

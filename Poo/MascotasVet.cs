@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 
 namespace Poo
@@ -19,7 +15,7 @@ namespace Poo
             this.especie = especie;
             this.nombre = nombre;
             this.fechaDeNacimiento = fechaDeNacimiento;
-            this.historialVacunacion = new List<string>(); 
+            this.historialVacunacion = new List<string>();
         }
 
         public void AgregarVacuna(string vacuna)

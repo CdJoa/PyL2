@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poo
+﻿namespace Poo
 {
     public class Punto
     {
@@ -18,12 +11,12 @@ namespace Poo
         }
         public int GetX()
         {
-             return x;
+            return x;
         }
 
         public int GetY()
         {
-           return y; 
+            return y;
         }
 
 

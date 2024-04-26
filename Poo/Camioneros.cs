@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poo
+﻿namespace Poo
 {
     public class Camioneros
     {
@@ -39,7 +33,7 @@ namespace Poo
                 case 5: return dia5;
                 case 6: return dia6;
                 case 7: return dia7;
-                default: return 0; // Si el día no está en el rango 1-7, retornar 0
+                default: return 0;
             }
         }
         public int kmTotal()

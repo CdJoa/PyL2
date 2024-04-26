@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Poo
 {
@@ -20,7 +16,7 @@ namespace Poo
 
         static Estudiante()
         {
-            random = new Random();
+            Estudiante.random = new Random();
         }
 
         public Estudiante(string nombre, string apellido, string legajo)
@@ -31,27 +27,34 @@ namespace Poo
         }
         public void SetNotaPrimerParcial(int nota)
         {
-            notaPrimerParcial = nota;
+            if (nota > 0 && nota < 11)
+            {
+                this.notaPrimerParcial = nota;
+
+            }
         }
 
-        // Método setter para cambiar la nota del segundo parcial
         public void SetNotaSegundoParcial(int nota)
         {
-            notaSegundoParcial = nota;
+            if (nota > 0 && nota < 11)
+            {
+                this.notaSegundoParcial = nota;
+
+            }
         }
-        private double CalcularPromedio()
+        private float CalcularPromedio()
         {
-            return (notaPrimerParcial + notaSegundoParcial) / 2.0;
+            return ((float)(this.notaPrimerParcial + this.notaSegundoParcial)) / 2;
         }
         public void CalcularNotaFinal()
         {
-            if (notaPrimerParcial >= 4 && notaSegundoParcial >= 4)
+            if (this.notaPrimerParcial >= 4 && this.notaSegundoParcial >= 4)
             {
-                notaFinal = random.Next(6, 11); // Nota aleatoria entre 6 y 10
+                this.notaFinal = random.Next(6, 11);
             }
             else
             {
-                notaFinal = -1;
+                this.notaFinal = -1;
             }
         }
         public string Mostrar()

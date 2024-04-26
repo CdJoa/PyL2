@@ -11,6 +11,7 @@
     <ProjectReference Include="..\BibliotecaDeClases\BibliotecaDeClases.csproj" />
     <ProjectReference Include="..\Calculadora\Calculadora.csproj" />
     <ProjectReference Include="..\Poo\Poo.csproj" />
+    <ProjectReference Include="..\Sobrecarga\Sobrecarga.csproj" />
   </ItemGroup>
 
 </Project>
