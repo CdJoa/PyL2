@@ -1,68 +1,40 @@
 ﻿using System;
 using Sobrecarga;
-class Program
+
+using System;
+
+namespace Sobrecarga
 {
-    static void Main(string[] args)
+    class Program
     {
-        Estante estante = new Estante(3, 1);
+        static void Main(string[] args)
+        {
+            // Create NumeroBinario and NumeroDecimal objects
+            NumeroBinario numeroBinario1 = "1110";
+            NumeroDecimal numeroDecimal1 = 33;
 
-        // Creo 4 productos
-        Producto p1 = new Producto("Pepsi", "PESDS97413", (float)18.5);
-        Producto p2 = new Producto("Coca-Cola", "COSDS55752", (float)11.5);
-        Producto p3 = new Producto("Manaos", "MASDS51292", (float)20.5);
-        Producto p4 = new Producto("Crush", "CRSDS54861", (float)10.75);
+            // Conversion (explicit operator overload)
+            NumeroDecimal convertedDecimal = (NumeroDecimal)numeroBinario1; // 10 (decimal)
+            Console.WriteLine("Binario a decimal: {0}", convertedDecimal.Numero);
 
-        // Agrego los productos al estante
-        if (estante + p1)
-        {
-            Console.WriteLine("Agregó {0} {1} {2}", p1.GetMarca(), (string)p1, p1.GetPrecio());
-        }
-        else
-        {
-            Console.WriteLine("¡NO agregó {0} {1} {2}!", p1.GetMarca(), (string)p1, p1.GetPrecio());
-        }
+            NumeroBinario convertedBinary = (NumeroBinario)numeroDecimal1; // 1010 (binary)
+            Console.WriteLine("Decimal a Binario: {0}", convertedBinary.Numero);
 
-        if (estante + p1)
-        {
-            Console.WriteLine("Agregó {0} {1} {2}", p1.GetMarca(), (string)p1, p1.GetPrecio());
-        }
-        else
-        {
-            Console.WriteLine("¡NO agregó {0} {1} {2}!", p1.GetMarca(), (string)p1, p1.GetPrecio());
-        }
+            double suma = numeroDecimal1 + numeroBinario1; // Suma decimal y binario
+            Console.WriteLine("Suma de Decimal y Binario: {0}", suma);
 
-        if (estante + p2)
-        {
-            Console.WriteLine("Agregó {0} {1} {2}", p2.GetMarca(), (string)p2, p2.GetPrecio());
-        }
-        else
-        {
-            Console.WriteLine("¡NO agregó {0} {1} {2}!", p2.GetMarca(), (string)p2, p2.GetPrecio());
-        }
+            double resta = numeroDecimal1 - numeroBinario1; // Resta decimal y binario
+            Console.WriteLine("Resta de Decimal y Binario: {0}", resta);
 
-        if (estante + p3)
-        {
-            Console.WriteLine("Agregó {0} {1} {2}", p3.GetMarca(), (string)p3, p3.GetPrecio());
-        }
-        else
-        {
-            Console.WriteLine("¡NO agregó {0} {1} {2}!", p3.GetMarca(), (string)p3, p3.GetPrecio());
-        }
+            bool sonIguales = numeroDecimal1 == numeroBinario1;
+            Console.WriteLine($"¿Son iguales? {sonIguales}"); // Debería imprimir 'True' si la conversión y comparación son correctas
 
-        if (estante + p4)
-        {
-            Console.WriteLine("Agregó {0} {1} {2}", p4.GetMarca(), (string)p4, p4.GetPrecio());
+            // Probar el operador !=
+            bool noSonIguales = numeroDecimal1 != numeroBinario1;
+            Console.WriteLine($"¿No son iguales? {noSonIguales}"); // Debería imprimir 'False' si la conversión y comparación son correctas
+
         }
-        else
-        {
-            Console.WriteLine("¡NO agregó {0} {1} {2}!", p4.GetMarca(), (string)p4, p4.GetPrecio());
-        }
-
-        // Muestro todo el estante
-        Console.WriteLine();
-        Console.WriteLine("<------------------------------------------------->");
-        Console.WriteLine(Estante.MostrarEstante(estante));
-
-
     }
 }
+
+

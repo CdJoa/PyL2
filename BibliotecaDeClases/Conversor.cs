@@ -2,7 +2,8 @@
 {
     public static class Conversor
     {
-        public static string ConvertirDecimalABinario(int numeroEntero)
+
+        public static string DecimalABinario(double numeroEntero)
         {
             if (numeroEntero == 0)
             {
@@ -10,30 +11,50 @@
             }
 
             string binario = "";
-            while (numeroEntero > 0)
+            int parteEntera = Math.Abs((int)numeroEntero);
+            int resto;
+
+            while (parteEntera != 0)
             {
-                int residuo = numeroEntero % 2;
-                binario = residuo + binario;
-                numeroEntero /= 2;
+                resto = parteEntera % 2;
+                parteEntera = parteEntera / 2;
+                binario = resto.ToString() + binario;
+            }
+
+            if (numeroEntero < 0)
+            {
+                binario = "-" + binario;
             }
 
             return binario;
         }
 
-        public static int ConvertirBinarioADecimal(int numeroBinario)
-        {
-            int numeroDecimal = 0;
-            int potencia = 0;
 
-            while (numeroBinario != 0)
+
+        public static double BinarioADecimal(string numeroString)
+        {
+            double enteroConvertido = 0;
+            double exponente = 0;
+            double signo;
+
+            if (numeroString[0] == '-')
             {
-                int digito = numeroBinario % 10;
-                numeroDecimal += digito * (int)Math.Pow(2, potencia);
-                numeroBinario /= 10;
-                potencia++;
+                numeroString = numeroString.Substring(1);
+                signo = -1;
+            }
+            else
+            {
+                signo = 1;
             }
 
-            return numeroDecimal;
+            for (int i = numeroString.Length - 1; i >= 0; i--)
+            {
+                char digitoChar = numeroString[i];
+                double digito = double.Parse(digitoChar.ToString());
+                enteroConvertido += digito * (double)Math.Pow(2, exponente);
+                exponente++;
+            }
+            return enteroConvertido * signo;
         }
     }
 }
