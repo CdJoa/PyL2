@@ -1,40 +1,54 @@
 ﻿using System;
-using Sobrecarga;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-using System;
+
 
 namespace Sobrecarga
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            // Create NumeroBinario and NumeroDecimal objects
-            NumeroBinario numeroBinario1 = "1110";
-            NumeroDecimal numeroDecimal1 = 33;
 
-            // Conversion (explicit operator overload)
-            NumeroDecimal convertedDecimal = (NumeroDecimal)numeroBinario1; // 10 (decimal)
-            Console.WriteLine("Binario a decimal: {0}", convertedDecimal.Numero);
+            static void Main(string[] args)
+            {
+                int[] arrayNumeros = new int[20];
+                Random rdn = new Random();
 
-            NumeroBinario convertedBinary = (NumeroBinario)numeroDecimal1; // 1010 (binary)
-            Console.WriteLine("Decimal a Binario: {0}", convertedBinary.Numero);
+                for (int i = 0; i < arrayNumeros.Length; i++)
+                {
+                    arrayNumeros[i] = rdn.Next(-100, 100);
+                }
+                Console.WriteLine("Array original");
+                for (int i = 0; i < arrayNumeros.Length; i++)
+                {
+                    Console.WriteLine("{0} : {1}", i, arrayNumeros[i]);
 
-            double suma = numeroDecimal1 + numeroBinario1; // Suma decimal y binario
-            Console.WriteLine("Suma de Decimal y Binario: {0}", suma);
+                }
+                Console.WriteLine("positivos ordenados en forma decreciente.");
+                Array.Sort(arrayNumeros, Program.OrdenDescendente);
+                for (int i = 0; i < arrayNumeros.Length; i++)
+                {
 
-            double resta = numeroDecimal1 - numeroBinario1; // Resta decimal y binario
-            Console.WriteLine("Resta de Decimal y Binario: {0}", resta);
+                    if (arrayNumeros[i] > 0)
+                        Console.WriteLine("{0} : {1}", i, arrayNumeros[i]);
+                }
+                Console.WriteLine("negativos ordenados en forma creciente.");
+                Array.Sort(arrayNumeros);
+                for (int i = 0; i < arrayNumeros.Length; i++)
+                {
 
-            bool sonIguales = numeroDecimal1 == numeroBinario1;
-            Console.WriteLine($"¿Son iguales? {sonIguales}"); // Debería imprimir 'True' si la conversión y comparación son correctas
+                    if (arrayNumeros[i] < 0)
+                        Console.WriteLine("{0} : {1}", i, arrayNumeros[i]);
+                }
 
-            // Probar el operador !=
-            bool noSonIguales = numeroDecimal1 != numeroBinario1;
-            Console.WriteLine($"¿No son iguales? {noSonIguales}"); // Debería imprimir 'False' si la conversión y comparación son correctas
-
+            }
+            public static int OrdenDescendente(int n1, int n2)
+            {
+                return n2 - n1;
+            }
         }
-    }
 }
 
 

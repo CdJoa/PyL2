@@ -14,7 +14,7 @@ namespace Sobrecarga
 
         static Peso()
         {
-            Peso.cotizRespectoDolar = 1 / 460;
+            Peso.cotizRespectoDolar = 0.001;
         }
 
         public Peso(double cantidad)
@@ -46,6 +46,10 @@ namespace Sobrecarga
         public static double GetCotizacion()
         {
             return cotizRespectoDolar;
+        }
+        public static void SetCotizacion(double nuevaCotizacion)
+        {
+            cotizRespectoDolar = nuevaCotizacion;
         }
 
         public static Peso operator -(Peso p, Euro e)

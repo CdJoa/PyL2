@@ -14,7 +14,7 @@ namespace Sobrecarga
 
         static Euro()
         {
-            Euro.cotizRespectoDolar = 1 / 1.08;
+            Euro.cotizRespectoDolar = 1 * 1.08;
         }
 
         public Euro(double cantidad)
@@ -47,6 +47,10 @@ namespace Sobrecarga
         public static double GetCotizacion()
         {
             return cotizRespectoDolar;
+        }
+        public static void SetCotizacion(double nuevaCotizacion)
+        {
+            cotizRespectoDolar = nuevaCotizacion;
         }
 
         public static Euro operator -(Euro e, Dolar d)
