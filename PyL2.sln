@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sobrecarga", "Sobrecarga\So
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsForms", "WindowsForms\WindowsForms.csproj", "{C1153989-569C-491E-8A23-FB0E529C6288}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colecciones", "Colecciones\Colecciones.csproj", "{84A35AAE-A952-4B00-BBB5-433E5DD99E5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colecciones", "Colecciones\Colecciones.csproj", "{84A35AAE-A952-4B00-BBB5-433E5DD99E5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
