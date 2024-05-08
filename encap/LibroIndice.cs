@@ -4,30 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace Encapsulamiento 
+namespace Encap
 {
-    public class LibroIndice 
+    public class LibroIndice
     {
-        private List<string> paginas; 
+        private List<string> paginas;
 
-        public LibroIndice() 
+        public LibroIndice()
         {
-            this.paginas = new List<string>(); 
+            this.paginas = new List<string>();
         }
 
         public string this[int i] // Define un indexador para la clase que toma un índice entero y devuelve una cadena.
         {
-            get 
+            get
             {
                 if (i >= 0 && i < this.paginas.Count) // Comprueba si el índice está dentro del rango válido.
                 {
-                    return paginas[i]; 
+                    return paginas[i];
                 }
-                return "Pagina no valida"; 
+                return "Pagina no valida";
             }
 
-            set 
+            set
             {
                 if (i > this.paginas.Count) // Comprueba si el índice es mayor que el número de páginas existentes.
                 {

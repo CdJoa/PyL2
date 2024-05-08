@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Colecciones;
-using Encapsulamiento;
+using Encap;
 
 
 using System;
