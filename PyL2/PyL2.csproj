@@ -10,8 +10,10 @@
   <ItemGroup>
     <ProjectReference Include="..\BibliotecaDeClases\BibliotecaDeClases.csproj" />
     <ProjectReference Include="..\Calculadora\Calculadora.csproj" />
+    <ProjectReference Include="..\centralita\BibiliotecaCentralita.csproj" />
     <ProjectReference Include="..\Colecciones\Colecciones.csproj" />
     <ProjectReference Include="..\encap\Encap.csproj" />
+    <ProjectReference Include="..\Herencia\Herencia.csproj" />
     <ProjectReference Include="..\Poo\Poo.csproj" />
     <ProjectReference Include="..\Sobrecarga\Sobrecarga.csproj" />
   </ItemGroup>

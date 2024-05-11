@@ -1,64 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Herencia;
 
 
 namespace Colecciones
 {
-    public class AutoF1
+    public class AutoF1 : VehiculoCarrera
     {
-        private short cantidadCombustible;
-        private bool enCompetencia;
-        private string escuderia;
-        private short numero;
-        private short vueltasRestantes;
+        private short caballosFuerza;
 
-        // Constructor
+        public short CaballosFuerza
+        {
+            get { return caballosFuerza; }
+            set { caballosFuerza = value; }
+        }
+
         public AutoF1(short numero, string escuderia)
+            : base(numero, escuderia) 
         {
-            this.cantidadCombustible = 0;
-            this.enCompetencia = false;
-            this.escuderia = escuderia;
-            this.numero = numero;
-            this.vueltasRestantes = 0;
+            this.CaballosFuerza = 0; 
         }
 
-        public string MostrarDatos()
+        public AutoF1(short numero, string escuderia, short caballosFuerza)
+            : base(numero, escuderia) 
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Auto " + this.numero);
-            sb.AppendLine("Escuderia " + this.escuderia);
-            sb.AppendLine("Vueltas restantes " + this.vueltasRestantes);
-            return sb.ToString();
-
+            this.CaballosFuerza = caballosFuerza;
         }
-        public short CantidadCombustible
-        {
-            get { return cantidadCombustible; }
-            set { cantidadCombustible = value; }
-        }
-
-        public bool EnCompetencia
-        {
-            get { return enCompetencia; }
-            set { enCompetencia = value; }
-        }
-
-        public short VueltasRestantes
-        {
-            get { return vueltasRestantes; }
-            set { vueltasRestantes = value; }
-        }
-
         public static bool operator ==(AutoF1 a1, AutoF1 a2)
         {
-            return (a1.numero == a2.numero && a1.escuderia == a2.escuderia);
+            return (a1.Numero == a2.Numero && a1.Escuderia == a2.Escuderia);
         }
+
         public static bool operator !=(AutoF1 a1, AutoF1 a2)
         {
-            return !(a1.numero == a2.numero && a1.escuderia == a2.escuderia);
+            return !(a1 == a2); // Reutiliza el operador == para definir el operador !=
         }
+
     }
 }
