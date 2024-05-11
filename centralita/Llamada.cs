@@ -8,6 +8,7 @@ namespace BibliotecaCentralita
 {
     public class Llamada
     {
+
         protected float duracion;
         protected string nroDestino;
         protected string nroOrigen;
