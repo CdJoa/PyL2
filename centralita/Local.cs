@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System;
-
 namespace BibliotecaCentralita
 {
     public class Local : Llamada
@@ -22,11 +20,10 @@ namespace BibliotecaCentralita
 
         private float CalcularCosto()
         {
-            return (float)(base.Duracion * this.costo);
+            return base.Duracion * this.costo;
         }
 
-
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj)) return false; // Manejar el caso nulo
 
@@ -39,9 +36,13 @@ namespace BibliotecaCentralita
                 return base.Equals(local) && NroDestino == local.NroDestino && NroOrigen == local.NroOrigen;
             }
 
-            return false; 
+            return false;
         }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), NroDestino, NroOrigen);
+        }
 
         public Local(Llamada llamada, float costo) : this(llamada.NroOrigen, llamada.Duracion, llamada.NroDestino, costo)
         {
@@ -67,6 +68,7 @@ namespace BibliotecaCentralita
         }
     }
 }
+
 /*centralita i
  ﻿using System;
 using System.Collections.Generic;

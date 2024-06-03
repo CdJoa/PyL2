@@ -1,0 +1,15 @@
+﻿using tiposGenericos;
+class Program
+{
+    static void Main(string[] args)
+    {
+        Torneo<EquipoBasket> torneoBasquet = new Torneo<EquipoBasket>("tBasquet");
+        EquipoBasket e1 = new EquipoBasket("e1", DateTime.Now);
+        EquipoBasket e2 = new EquipoBasket("e2", DateTime.Now);
+
+        _ = torneoBasquet + e1;
+        _ = torneoBasquet + e2;
+
+        Console.WriteLine(torneoBasquet.Mostrar());
+    }
+}

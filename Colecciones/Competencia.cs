@@ -63,37 +63,55 @@ namespace Colecciones
         {
             Random combustibleRandom = new Random();
             bool returnAux = false;
-            if (c.competidores.Count < c.cantidadCompetidores && c != v)
-            {                
-                v.EnCompetencia = true;
-                v.VueltasRestantes = c.cantidadVueltas;
-                v.CantidadCombustible = (short)combustibleRandom.Next(15, 100);
-                c.competidores.Add(v);
-                returnAux = true;
-
-                return true;
+            try
+            {
+                if (c.competidores.Count < c.cantidadCompetidores && c != v)
+                {
+                    v.EnCompetencia = true;
+                    v.VueltasRestantes = c.cantidadVueltas;
+                    v.CantidadCombustible = (short)combustibleRandom.Next(15, 100);
+                    c.competidores.Add(v);
+                    returnAux = true;
+                    return true;
+                }
+                else
+                {
+                    throw new CompetenciaNoDisponibleException("El vehículo no corresponde a la competencia", "Competencia", "+");
+                }
             }
-            return returnAux;
+            catch (CompetenciaNoDisponibleException ex)
+            {
+                throw new CompetenciaNoDisponibleException("Competencia incorrecta", "Competencia", "+", ex);
+            }
         }
         public static bool operator -(Competencia c, VehiculoCarrera v)
         {
             bool returnAux = false;
-
-            if (c == v)
+            try
             {
-                c.competidores.Remove(v);
-                return true;
+                if (c == v)
+                {
+                    c.competidores.Remove(v);
+                    return true;
+                }
+                else
+                {
+                    throw new CompetenciaNoDisponibleException("El vehículo no corresponde a la competencia", "Competencia", "-");
+                }
             }
-            return returnAux;
+            catch (CompetenciaNoDisponibleException ex)
+            {
+                throw new CompetenciaNoDisponibleException("Competencia incorrecta", "Competencia", "-", ex);
+            }
         }
         public static bool operator ==(Competencia c, VehiculoCarrera v)
         {
             bool returnAux = false;
-
-            if((c.Tipo == Competencia.TipoCompetencia.F1 && v.GetType()== typeof(AutoF1))|| (c.Tipo == Competencia.TipoCompetencia.MotoCross && v.GetType() == typeof(Motocross)))
+            if ((c.Tipo == Competencia.TipoCompetencia.F1 && v.GetType() == typeof(AutoF1)) ||
+                (c.Tipo == Competencia.TipoCompetencia.MotoCross && v.GetType() == typeof(Motocross)))
+            {
+                if (c.competidores.Count != 0)
                 {
-                if (c.competidores.Count !=0 ) 
-                { 
                     foreach (VehiculoCarrera vehiculo in c.competidores)
                     {
                         if (vehiculo == v)
@@ -104,14 +122,20 @@ namespace Colecciones
                     }
                 }
             }
+            else
+            {
+                throw new CompetenciaNoDisponibleException("El vehículo no corresponde a la competencia", "Competencia", "==");
+            }
             return returnAux;
-
         }
+
+
         public static bool operator !=(Competencia c, VehiculoCarrera v)
         {
             return !(c == v);
 
         }
+
 
         public string MostrarDatos()
         {

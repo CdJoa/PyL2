@@ -18,6 +18,7 @@ namespace BibliotecaCentralita
                 return this.llamadas;
             }
         }
+
         // Propiedades para calcular las ganancias
         public float GananciaPorLocal
         {
@@ -43,14 +44,13 @@ namespace BibliotecaCentralita
             }
         }
 
-        private void AgregarLlamada(Llamada nuevallamada)
+        private void AgregarLlamada(Llamada? nuevallamada)
         {
             if (nuevallamada != null)
             {
                 this.llamadas.Add(nuevallamada);
             }
         }
-
 
         private float CalcularGanancia(TipoLlamada tipo)
         {
@@ -77,15 +77,18 @@ namespace BibliotecaCentralita
                 _ => 0
             };
         }
+
         public Centralita()
-        { }
+        {
+            this.llamadas = new List<Llamada>();
+            this.razonSocial = string.Empty;
+        }
 
         public Centralita(string nombreEmpresa)
         {
             this.razonSocial = nombreEmpresa;
             this.llamadas = new List<Llamada>();
         }
-
 
         private string MostrarDatos()
         {
@@ -104,35 +107,60 @@ namespace BibliotecaCentralita
 
             return sb.ToString();
         }
-        public static bool operator ==(Centralita centralita1, Llamada llamada)
+
+        public override bool Equals(object? obj)
         {
-            if (ReferenceEquals(centralita1, null) || ReferenceEquals(llamada, null))
+            if (obj == null || this.GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return centralita1.Llamadas.Contains(llamada);
+            Centralita centralita = (Centralita)obj;
+            return this.razonSocial == centralita.razonSocial && this.llamadas.SequenceEqual(centralita.llamadas);
         }
-        public static bool operator !=(Centralita centralita1, Llamada llamada)
+
+        public override int GetHashCode()
         {
-            if (ReferenceEquals(centralita1, null) || ReferenceEquals(llamada, null))
+            return this.razonSocial.GetHashCode() ^ this.llamadas.GetHashCode();
+        }
+
+        public static bool operator ==(Centralita? centralita, Llamada? llamada)
+        {
+            if (ReferenceEquals(centralita, null) || ReferenceEquals(llamada, null))
             {
-                return true; 
+                return false;
             }
 
-            return !centralita1.Llamadas.Contains(llamada); 
+            // Verificar si alguna llamada en la lista coincide con la nueva llamada
+            foreach (Llamada l in centralita.Llamadas)
+            {
+                if (l == llamada)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
+
+        public static bool operator !=(Centralita? centralita, Llamada? llamada)
+        {
+            return !(centralita == llamada);
+        }
+
         public static Centralita operator +(Centralita centralita, Llamada llamada)
         {
-            if (centralita != llamada)
+            // Verificar si la llamada ya existe en la lista
+            if (centralita == llamada)
             {
-                centralita.AgregarLlamada(llamada);
+                // Lanzar excepción si ya existe
+                throw new CentralitaException("La llamada ya está registrada en la centralita.", nameof(Centralita), "operator +");
             }
 
+            // Agregar la llamada si no existe
+            centralita.AgregarLlamada(llamada);
             return centralita;
         }
-
-
 
         public void OrdenarLlamadas()
         {
@@ -143,9 +171,10 @@ namespace BibliotecaCentralita
         {
             return MostrarDatos();
         }
-
     }
 }
+
+
 /* using System;
 using System.Collections.Generic;
 using System.Linq;

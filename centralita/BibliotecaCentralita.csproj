@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\excepcion\excepcion.csproj" />
-    <ProjectReference Include="..\Herencia\Herencia.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -9,6 +9,7 @@ namespace BibliotecaCentralita
     public class Provincial : Llamada
     {
         private Franja franjaHoraria;
+
         public override float CostoLlamada
         {
             get
@@ -16,6 +17,7 @@ namespace BibliotecaCentralita
                 return CalcularCosto();
             }
         }
+
         private float CalcularCosto()
         {
             float resultado = 0f;
@@ -34,30 +36,36 @@ namespace BibliotecaCentralita
             return resultado;
         }
 
-
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj) // Cambiar a object?
         {
-            if (ReferenceEquals(null, obj)) return false; 
+            if (ReferenceEquals(null, obj)) return false;
 
-            if (ReferenceEquals(this, obj)) return true;  
+            if (ReferenceEquals(this, obj)) return true;
 
             if (obj is Provincial provincial)
             {
                 return base.Equals(provincial) && NroDestino == provincial.NroDestino && NroOrigen == provincial.NroOrigen && franjaHoraria == provincial.franjaHoraria;
             }
 
-            return false; 
+            return false;
         }
 
+        public override int GetHashCode()
+        {
+            int hashCode = base.GetHashCode();
+            hashCode = hashCode * 397 ^ (int)franjaHoraria;
+            return hashCode;
+        }
 
         protected override string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(base.ToString()); 
-            sb.AppendLine($"franja-horaria={franjaHoraria}"); 
-            sb.AppendLine($"costo-llamada={CostoLlamada}"); 
+            sb.Append(base.ToString());
+            sb.AppendLine($"franja-horaria={franjaHoraria}");
+            sb.AppendLine($"costo-llamada={CostoLlamada}");
             return sb.ToString();
         }
+
         public Provincial(Franja franja, Llamada llamada) : this(llamada.NroOrigen, franja, llamada.Duracion, llamada.NroDestino)
         {
         }
@@ -71,6 +79,7 @@ namespace BibliotecaCentralita
         {
             return MostrarDatos();
         }
+
         public enum Franja
         {
             Franja_1,
@@ -79,6 +88,7 @@ namespace BibliotecaCentralita
         }
     }
 }
+
 /* centralita I
  ﻿using System;
 using System.Collections.Generic;

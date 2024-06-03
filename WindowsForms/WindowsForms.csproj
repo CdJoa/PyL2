@@ -10,6 +10,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BibliotecaDeClases\BibliotecaDeClases.csproj" />
+    <ProjectReference Include="..\Calculadora\Calculadora.csproj" />
+    <ProjectReference Include="..\centralita\BibliotecaCentralita.csproj" />
+    <ProjectReference Include="..\excepcion\excepcion.csproj" />
     <ProjectReference Include="..\Sobrecarga\Sobrecarga.csproj" />
   </ItemGroup>
 
