@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Colecciones;
-using Encap;
-using System;
-using Herencia;
-using BibliotecaCentralita;
-using Polimorfismo;
-using tiposGenericos;
 using Delegados;
 class Program
 {

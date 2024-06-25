@@ -12,6 +12,7 @@
     <ProjectReference Include="..\Calculadora\Calculadora.csproj" />
     <ProjectReference Include="..\centralita\BibliotecaCentralita.csproj" />
     <ProjectReference Include="..\Colecciones\Colecciones.csproj" />
+    <ProjectReference Include="..\Delegados\Delegados.csproj" />
     <ProjectReference Include="..\encap\Encap.csproj" />
     <ProjectReference Include="..\Herencia\Herencia.csproj" />
     <ProjectReference Include="..\Polimorfismo\Polimorfismo.csproj" />
