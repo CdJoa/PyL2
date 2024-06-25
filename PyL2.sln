@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tiposGenericos", "tiposGene
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestUnitarios8.0", "TestUnitarios8.0\TestUnitarios8.0.csproj", "{045A58EE-A40F-473D-A470-4E923F738607}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegados", "Delegados\Delegados.csproj", "{01ABAA99-0A87-42D1-9832-0B5FA1BC7F56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delegados", "Delegados\Delegados.csproj", "{01ABAA99-0A87-42D1-9832-0B5FA1BC7F56}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HilosYEventos", "HilosYEventos\HilosYEventos.csproj", "{AE1FE316-9BFD-4268-8C57-55B77888CECF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{01ABAA99-0A87-42D1-9832-0B5FA1BC7F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01ABAA99-0A87-42D1-9832-0B5FA1BC7F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01ABAA99-0A87-42D1-9832-0B5FA1BC7F56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1FE316-9BFD-4268-8C57-55B77888CECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1FE316-9BFD-4268-8C57-55B77888CECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1FE316-9BFD-4268-8C57-55B77888CECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1FE316-9BFD-4268-8C57-55B77888CECF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

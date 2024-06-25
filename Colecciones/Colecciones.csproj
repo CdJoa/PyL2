@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Moq" Version="4.20.70" />
+    <PackageReference Include="NameGenerator" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\excepcion\excepcion.csproj" />
     <ProjectReference Include="..\Herencia\Herencia.csproj" />
   </ItemGroup>

@@ -11,98 +11,32 @@ using BibliotecaCentralita;
 using Polimorfismo;
 using tiposGenericos;
 using Delegados;
+using HilosYEventos;
 class Program
 {
     public delegate int DelegadoComparacion(string primerTexto, string segundoTexto);
 
     static void Main(string[] args)
     {
-        string primerTexto = "Vive como si fueras a morir mañana; aprende como si el mundo fuera a durar para siempre.";
-        // Cant. caracteres: 88, Cant. palabras: 17 , Cant. vocales: 34, Cant. signos puntuación: 2 
-        string segundoTexto = "La vida es como montar en bicicleta; para mantener el equilibrio debes seguir moviéndote.";
-        // Cant. caracteres: 89, Cant. palabras: 13, Cant. vocales: 35, Cant. signos puntuación: 2
-
-        /*/
-        Console.WriteLine("Ingrese el primer texto:");
-        string primerTexto = Console.ReadLine();
-
-        Console.WriteLine("Ingrese el segundo texto:");
-        string segundoTexto = Console.ReadLine();
-        //*/
-
-        string newLine = Environment.NewLine;
-
-        Console.WriteLine($"{newLine}1era Comparación - Texto con más caracteres:");
-        Comparar(primerTexto, segundoTexto, (txt1, txt2) => txt1.Length - txt2.Length);
-
-
-        Console.WriteLine($"{newLine}2da Comparación - Texto con más palabras:");
-        Comparar(primerTexto, segundoTexto, (txt1, txt2) => ContarPalabras(txt1) - ContarPalabras(txt2));
-
-        Console.WriteLine($"{newLine}3era Comparación - Texto con más vocales:");
-        Comparar(primerTexto, segundoTexto, (txt1, txt2) => ContarVocales(txt1) - ContarVocales(txt2));
-
-        Console.WriteLine($"{newLine}4ta Comparación - Texto con más signos de puntuación:");
-        Comparar(primerTexto, segundoTexto, (txt1, txt2) => ContarSignosPuntuacion(txt1) - ContarSignosPuntuacion(txt2));
-    }
-
-    public static int ContarVocales(string texto)
-    {
-        List<char> vocales = new List<char>()
-            {
-                'a', 'á', 'A', 'Á', 'e', 'é', 'E', 'É',
-                'i', 'í', 'I', 'Í', 'o', 'ó', 'O', 'Ó',
-                'u', 'ú', 'U', 'Ú'
-            };
-
-        return ContarCaracteres(texto, vocales);
-    }
-
-    public static int ContarSignosPuntuacion(string texto)
-    {
-        List<char> signosPuntuacion = new List<char>()
-            {
-                '.', ';', ','
-            };
-
-        return ContarCaracteres(texto, signosPuntuacion);
-    }
-
-    public static int ContarCaracteres(string texto, List<char> caracteres)
-    {
-        int cantidadCaracteres = 0;
-
-        foreach (char caracter in texto)
+        CajaH.DelegadoClienteAtendido delegadoClienteAtendido = (caja, cliente) =>
         {
-            if (caracteres.Contains(caracter))
-            {
-                cantidadCaracteres++;
-            }
-        }
+            Console.WriteLine($"{DateTime.Now:HH:MM:ss} - Hilo {Task.CurrentId} - {caja.NombreCaja} - Atendiendo a {cliente}. Quedan {caja.CantidadDeClientesALaEspera} clientes en esta caja.");
+        };
 
-        return cantidadCaracteres;
-    }
+        CajaH caja1 = new CajaH("Caja 01", delegadoClienteAtendido);
+        CajaH caja2 = new CajaH("Caja 02", delegadoClienteAtendido);
 
-    public static void Comparar(string txt1, string txt2, DelegadoComparacion delegado)
-    {
-        int resultado = delegado(txt1, txt2);
+        List<CajaH> cajas = new List<CajaH>()
+        {
+            caja1,
+            caja2
+        };
 
-        if (resultado > 0)
-        {
-            Console.WriteLine("El primer texto es mayor al segundo.");
-        }
-        else if (resultado < 0)
-        {
-            Console.WriteLine("El primer texto es menor al segundo.");
-        }
-        else
-        {
-            Console.WriteLine("Los textos son iguales en cantidad.");
-        }
-    }
-    public static int ContarPalabras(string texto)
-    {
-        string[] palabras = texto.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-        return palabras.Length;
+        NegocioH negocio = new NegocioH(cajas);
+
+        Console.WriteLine("Asignando cajas...");
+
+        List<Task> hilos = negocio.ComenzarAtencion();
+        Task.WaitAll(hilos.ToArray());
     }
 }
