@@ -31,7 +31,7 @@ namespace HilosYEventos
         {
             List<Task> hilos = new List<Task>();
             hilos.AddRange(AbrirCajas());
-
+            
 
             hilos.Add(Task.Run(GenerarClientes));
             hilos.Add(Task.Run(AsignarCajas));
