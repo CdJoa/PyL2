@@ -11,12 +11,18 @@ namespace BibliotecaCentralita
         private List<Llamada> llamadas;
         private Random random;
         private bool simulando;
+        private LocalDAO localDAO;
+        private ProvincialDAO provincialDAO;
+        private string logFilePath;
 
         public SimuladorLlamadas(List<Llamada> llamadas)
         {
             this.llamadas = llamadas;
             this.random = new Random();
             this.simulando = false;
+            this.localDAO = new LocalDAO();
+            this.provincialDAO = new ProvincialDAO();
+            this.logFilePath = "simulador_llamadas_log.txt"; // Ruta del archivo de log
         }
 
         public async Task IniciarSimulacion()
@@ -47,6 +53,9 @@ namespace BibliotecaCentralita
                     destino: GenerarNumeroTelefono(),
                     costo: (float)(random.NextDouble() * 10) // Costo entre 0 y 10
                 );
+                ((Local)nuevaLlamada).RutaArchivo = "local_llamada.xml"; // Establecer la ruta del archivo
+                ((Local)nuevaLlamada).Guardar(); // Guardar la llamada local en un archivo XML
+                localDAO.Guardar((Local)nuevaLlamada);
             }
             else
             {
@@ -55,17 +64,32 @@ namespace BibliotecaCentralita
                     miFranja: (Provincial.Franja)random.Next(0, 3), // Franja aleatoria
                     duracion: random.Next(1, 60), // Duración entre 1 y 60 minutos
                     destino: GenerarNumeroTelefono()
-
                 );
+                provincialDAO.Guardar((Provincial)nuevaLlamada);
             }
 
             llamadas.Add(nuevaLlamada);
-            Console.WriteLine($"Nueva llamada agregada: {nuevaLlamada}");
+            Console.WriteLine($"Nueva llamada agregada: {nuevaLlamada.GetType().Name}");
+            Console.WriteLine(nuevaLlamada.MostrarDatos());
+
+            // Registrar la llamada en el archivo de log
+            RegistrarLog(nuevaLlamada);
         }
 
         private string GenerarNumeroTelefono()
         {
             return $"{random.Next(100, 1000)}-{random.Next(1000, 10000)}";
+        }
+
+        private void RegistrarLog(Llamada llamada)
+        {
+            using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            {
+                writer.WriteLine($"Fecha y Hora: {DateTime.Now}");
+                writer.WriteLine($"Tipo de Llamada: {llamada.GetType().Name}");
+                writer.WriteLine(llamada.MostrarDatos());
+                writer.WriteLine(new string('-', 50));
+            }
         }
     }
 }

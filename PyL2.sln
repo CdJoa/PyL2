@@ -39,8 +39,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Interfaces\In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchivosManejadores", "Archivos\ArchivosManejadores.csproj", "{37BA0D18-A5A3-46FC-9EF2-275F045D3465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntidadesDAO", "EntidadesDAO\EntidadesDAO.csproj", "{6EC34A21-A8A0-4675-BCFF-D2C51BB52DE5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,10 +117,6 @@ Global
 		{37BA0D18-A5A3-46FC-9EF2-275F045D3465}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37BA0D18-A5A3-46FC-9EF2-275F045D3465}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37BA0D18-A5A3-46FC-9EF2-275F045D3465}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EC34A21-A8A0-4675-BCFF-D2C51BB52DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EC34A21-A8A0-4675-BCFF-D2C51BB52DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EC34A21-A8A0-4675-BCFF-D2C51BB52DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EC34A21-A8A0-4675-BCFF-D2C51BB52DE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
