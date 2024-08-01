@@ -25,7 +25,7 @@ namespace BibliotecaCentralita
             this.nroOrigen = nroOrigen;
         }
 
-        protected virtual string MostrarDatos()
+        public virtual string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Duracion: " + this.duracion);

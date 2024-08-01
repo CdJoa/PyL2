@@ -12,31 +12,28 @@ using Polimorfismo;
 using tiposGenericos;
 using Delegados;
 using HilosYEventos;
+using System;
+
 class Program
 {
-    public delegate int DelegadoComparacion(string primerTexto, string segundoTexto);
-
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-        CajaH.DelegadoClienteAtendido delegadoClienteAtendido = (caja, cliente) =>
+        List<Llamada> llamadas = new List<Llamada>();
+        SimuladorLlamadas simulador = new SimuladorLlamadas(llamadas);
+
+        Console.WriteLine("Iniciando simulación de llamadas...");
+        Task simulacion = simulador.IniciarSimulacion();
+
+        Console.WriteLine("Presiona cualquier tecla para detener la simulación...");
+        Console.ReadKey();
+
+        simulador.DetenerSimulacion();
+        await simulacion;
+
+        Console.WriteLine("Simulación detenida. Llamadas generadas:");
+        foreach (var llamada in llamadas)
         {
-            Console.WriteLine($"{DateTime.Now:HH:MM:ss} - Hilo {Task.CurrentId} - {caja.NombreCaja} - Atendiendo a {cliente}. Quedan {caja.CantidadDeClientesALaEspera} clientes en esta caja.");
-        };
-
-        CajaH caja1 = new CajaH("Caja 01", delegadoClienteAtendido);
-        CajaH caja2 = new CajaH("Caja 02", delegadoClienteAtendido);
-
-        List<CajaH> cajas = new List<CajaH>()
-        {
-            caja1,
-            caja2
-        };
-
-        NegocioH negocio = new NegocioH(cajas);
-
-        Console.WriteLine("Asignando cajas...");
-
-        List<Task> hilos = negocio.ComenzarAtencion();
-        Task.WaitAll(hilos.ToArray());
+            Console.WriteLine(llamada.MostrarDatos());
+        }
     }
 }

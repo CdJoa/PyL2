@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Interfaces;
 namespace BibliotecaCentralita
 {
-    public class Centralita
+    public class Centralita : IGuardar<Centralita>
     {
         private List<Llamada> llamadas;
         private string razonSocial;
+
+        public string RutaArchivo { get; set; }
 
         public List<Llamada> Llamadas
         {
@@ -157,6 +159,15 @@ namespace BibliotecaCentralita
                 throw new CentralitaException("La llamada ya está registrada en la centralita.", nameof(Centralita), "operator +");
             }
 
+            try
+            {
+                centralita.Guardar();
+            }
+            catch (FallaLogException)
+            {
+                // Manejar la excepción si es necesario, pero continuar agregando la llamada
+            }
+
             // Agregar la llamada si no existe
             centralita.AgregarLlamada(llamada);
             return centralita;
@@ -170,6 +181,34 @@ namespace BibliotecaCentralita
         public override string ToString()
         {
             return MostrarDatos();
+        }
+
+        public bool Guardar()
+        {
+            try
+            {
+                string logEntry = $"{DateTime.Now:dddd dd MMMM yyyy HH:mm}hs – Se realizó una llamada";
+                File.AppendAllText(RutaArchivo, logEntry + Environment.NewLine);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new FallaLogException("Error al guardar en el archivo de log.", ex);
+            }
+        }
+
+        public Centralita Leer()
+        {
+            try
+            {
+                string contenido = File.ReadAllText(RutaArchivo);
+
+                return new Centralita(RutaArchivo);
+            }
+            catch (Exception ex)
+            {
+                throw new FallaLogException("Error al leer el archivo de log.", ex);
+            }
         }
     }
 }

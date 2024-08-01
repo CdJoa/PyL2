@@ -1,14 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces;
+using System;
+using System.IO;
+using System.Text;
+using System.Xml.Serialization;
 
 namespace BibliotecaCentralita
 {
-    public class Local : Llamada
+    public class Local : Llamada, IGuardar<Local>
     {
         protected float costo;
+
+        public string RutaArchivo { get; set; } // Implementación de la propiedad RutaArchivo
 
         public override float CostoLlamada
         {
@@ -53,11 +59,10 @@ namespace BibliotecaCentralita
             this.costo = costo;
         }
 
-        protected override string MostrarDatos()
+        public override string MostrarDatos()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.MostrarDatos());
-            sb.AppendLine("Costo de la llamada: " + CostoLlamada);
+            StringBuilder sb = new StringBuilder(base.MostrarDatos());
+            sb.AppendLine("Costo: " + this.CostoLlamada);
 
             return sb.ToString();
         }
@@ -65,6 +70,48 @@ namespace BibliotecaCentralita
         public override string ToString()
         {
             return MostrarDatos();
+        }
+
+        // Implementación de la interfaz IGuardar<Local>
+        public bool Guardar()
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Local));
+                using (StreamWriter writer = new StreamWriter(RutaArchivo))
+                {
+                    serializer.Serialize(writer, this);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new FallaLogException("Error al guardar el archivo de log.", ex);
+            }
+        }
+
+        public Local Leer()
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Local));
+                using (StreamReader reader = new StreamReader(RutaArchivo))
+                {
+                    object obj = serializer.Deserialize(reader);
+                    if (obj is Local local)
+                    {
+                        return local;
+                    }
+                    else
+                    {
+                        throw new InvalidCastException("El objeto deserializado no es del tipo Local.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FallaLogException("Error al leer el archivo de log.", ex);
+            }
         }
     }
 }

@@ -1,14 +1,19 @@
-﻿using System;
+﻿using ArchivosManejadores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace BibliotecaCentralita
 {
-    public class Provincial : Llamada
+    public class Provincial : Llamada, IGuardar<Provincial>
     {
         private Franja franjaHoraria;
+        public string RutaArchivo { get; set; } // Implementación de la propiedad RutaArchivo
 
         public override float CostoLlamada
         {
@@ -24,13 +29,13 @@ namespace BibliotecaCentralita
             switch (franjaHoraria)
             {
                 case Franja.Franja_1:
-                    resultado = 0.99f * Duracion;
+                    resultado =2 * Duracion;
                     break;
                 case Franja.Franja_2:
-                    resultado = 1.25f * Duracion;
+                    resultado = 3 * Duracion;
                     break;
                 case Franja.Franja_3:
-                    resultado = 0.66f * Duracion;
+                    resultado = 6 * Duracion;
                     break;
             }
             return resultado;
@@ -57,7 +62,7 @@ namespace BibliotecaCentralita
             return hashCode;
         }
 
-        protected override string MostrarDatos()
+        public override string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
@@ -80,6 +85,46 @@ namespace BibliotecaCentralita
             return MostrarDatos();
         }
 
+        public bool Guardar()
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Provincial));
+                using (StreamWriter writer = new StreamWriter(RutaArchivo))
+                {
+                    serializer.Serialize(writer, this);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new FallaLogException("Error al guardar el archivo de log.", ex);
+            }
+        }
+
+        public Provincial Leer()
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Provincial));
+                using (StreamReader reader = new StreamReader(RutaArchivo))
+                {
+                    object obj = serializer.Deserialize(reader);
+                    if (obj is Provincial provincial)
+                    {
+                        return provincial;
+                    }
+                    else
+                    {
+                        throw new InvalidCastException("El objeto deserializado no es del tipo Provincial.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FallaLogException("Error al leer el archivo de log.", ex);
+            }
+        }
         public enum Franja
         {
             Franja_1,
